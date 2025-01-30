@@ -70,10 +70,10 @@ public class Fish {
      */
     public void bounce() {
         // TODO: Write the Fish's bounce() method.
-        if ((x < 0 && dx < 0) || (x > tankWidth - leftImage.getWidth(null)  && dx > 0)) {
+        if ((x < 0 + leftImage.getWidth(null) && dx < 0) || (x > tankWidth - leftImage.getWidth(null)  && dx > 0)) {
             dx = -dx;
         }
-        if ((y < 0 && dy < 0) || (y > tankHeight - leftImage.getHeight(null) && dy > 0)) {
+        if ((y < 23 && dy < 0) || (y > tankHeight - leftImage.getHeight(null) && dy > 0)) {
             dy = -dy;
         }
     }
