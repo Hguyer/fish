@@ -17,12 +17,17 @@ public class AquariumView extends JFrame {
     private final int WINDOW_WIDTH = 1000;
     private final int WINDOW_HEIGHT = 800;
     private final int TITLE_BAR_HEIGHT = 23;
-    private Aquarium a;
-    public AquariumView(Aquarium a) {
+    private Aquarium aquarium;
+    public AquariumView(Aquarium aquarium) {
 
         // Initialize instance variables.
         // TODO: initialize the View's instance variables.
+        this.aquarium = aquarium;
+        aquariumImage = new ImageIcon("Resources/bubbles.jpg").getImage();
 
+        fishImages = new Image[] { new ImageIcon("Resources/fish1.png").getImage(),
+                new ImageIcon("Resources/fish2.png").getImage()
+        };
         // Setup the window and the buffer strategy.
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setTitle("The Aquarium");
@@ -59,5 +64,9 @@ public class AquariumView extends JFrame {
      */
     public void myPaint(Graphics g) {
         // TODO: Write the paint method.
+        g.drawImage(aquariumImage, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, this);
+        for (Fish fish : aquarium.getFishes()) {
+            fish.draw(g);
+        }
     }
 }

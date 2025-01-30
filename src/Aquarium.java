@@ -18,6 +18,11 @@ public class Aquarium implements ActionListener {
     public Aquarium() {
         // Initialize the View, then create all the Fish:
         // TODO: Write the Aquarium constructor.
+        window = new AquariumView(this);
+        fishes = new Fish[NUM_FISH];
+        for (int i = 0; i < NUM_FISH; i++) {
+            fishes[i] = new Fish(window);
+        }
     }
 
     /**
@@ -31,6 +36,11 @@ public class Aquarium implements ActionListener {
      */
     public void actionPerformed(ActionEvent e) {
         //  TODO: Write the actionPerformed method.
+        for(Fish fish: fishes){
+            fish.swim();
+            fish.bounce();
+        }
+        window.repaint();
     }
 
     public Fish[] getFishes() {

@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.*;
 /**
  * The Aquarium
@@ -20,11 +21,13 @@ public class Fish {
     public Fish(AquariumView tank) {
         // Initialize the tank values
         this.tank = tank;
-        this.tankWidth = tank.getWidth();
-        this.tankHeight = tank.getHeight();
+        tankWidth = tank.getWidth();
+        tankHeight = tank.getHeight();
 
         // Set the images
         // TODO: initialize the images in Fish
+        this.leftImage = tank.getImages()[0];
+        this.rightImage = tank.getImages()[1];
 
         // Initialize the fish's variables:
         this.x = (int) (Math.random() * tankWidth * 0.8);
@@ -55,6 +58,8 @@ public class Fish {
 
         // Update fish location
         // TODO: update the Fish's location.
+        x += dx;
+        y += dy;
     }
 
     /**
@@ -65,6 +70,12 @@ public class Fish {
      */
     public void bounce() {
         // TODO: Write the Fish's bounce() method.
+        if ((x < 0 && dx < 0) || (x > tankWidth - leftImage.getWidth(null)  && dx > 0)) {
+            dx = -dx;
+        }
+        if ((y < 0 && dy < 0) || (y > tankHeight - leftImage.getHeight(null) && dy > 0)) {
+            dy = -dy;
+        }
     }
 
     /**
@@ -75,5 +86,10 @@ public class Fish {
      */
     public void draw(Graphics g) {
         // TODO: Write the Fish's draw() method.
+        if (dx < 0) {
+            g.drawImage(leftImage, x, y, null);
+        } else {
+            g.drawImage(rightImage, x, y, null);
+        }
     }
 }
